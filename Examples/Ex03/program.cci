@@ -1,0 +1,4 @@
+VERSION:3 SOURCE_TIMESTAMP:4885B844
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega16.h"
+NODE:F LEVEL:0 LINE:2 "extrenal_int0(void)"
+NODE:F LEVEL:0 LINE:6 "main(void)"

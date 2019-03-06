@@ -1,0 +1,15 @@
+#include <mega16.h>
+#include <delay.h>
+
+void main(){
+DDRC=0B00000111;
+while (1)
+      {
+     PORTC=0B00000001;
+     delay_ms(3000);
+     PORTC=0B00000010;
+     delay_ms(500);
+     PORTC=0B00000100;
+     delay_ms(3000);    
+      }
+}
