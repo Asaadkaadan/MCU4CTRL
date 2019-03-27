@@ -1,0 +1,19 @@
+RAM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+t                                                                 0x0182       4
+r                                                                 0x0186       4
+s                                                                 0x018A       3
+_seed                                                             0x018D       4
+_base_y                                                           0x0191       4
+
+EEPROM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                          Register  Size
+--------------------------------------------------------------------------------
+_lcd_x                                                            R5           1
+_lcd_y                                                            R4           1
+_lcd_maxx                                                         R7           1

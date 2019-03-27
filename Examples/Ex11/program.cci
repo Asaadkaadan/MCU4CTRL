@@ -1,0 +1,10 @@
+VERSION:3 SOURCE_TIMESTAMP:489854A1
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\stdlib.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr2\inc\lcd.h"
+NODE:V LEVEL:0 LINE:7 "t -> RAM:????"
+NODE:V LEVEL:0 LINE:7 "r -> RAM:????"
+NODE:V LEVEL:0 LINE:8 "s -> RAM:????"
+NODE:F LEVEL:0 LINE:9 "incr_button(void)"
+NODE:F LEVEL:0 LINE:11 "decr_button(void)"
+NODE:F LEVEL:0 LINE:13 "main(void)"

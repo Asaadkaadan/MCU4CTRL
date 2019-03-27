@@ -1,0 +1,10 @@
+VERSION:3 SOURCE_TIMESTAMP:487FA8F1
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega8.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\delay.h"
+NODE:V LEVEL:0 LINE:3 "sevenseg_code -> RAM:????"
+NODE:V LEVEL:0 LINE:4 "i -> R5"
+NODE:V LEVEL:0 LINE:4 "a -> R4"
+NODE:V LEVEL:0 LINE:4 "b -> R7"
+NODE:F LEVEL:0 LINE:5 "extrenal_int0(void)"
+NODE:F LEVEL:0 LINE:10 "extrenal_int1(void)"
+NODE:F LEVEL:0 LINE:15 "main(void)"
