@@ -1,0 +1,77 @@
+#include <mega16.h>
+#include <delay.h>
+char sevenseg_code[10]={0x3f,6,0x5B,0x4f,0x66,0x6d,0x7c,0x07,0x7f,0x6f}; 
+char a,b,second=0,minute=0,hour=12;
+interrupt [2] void change_minute (void)
+{
+minute++;
+if (minute==60)minute= 0;
+}
+interrupt [3] void change_hour (void)
+{
+hour++;
+if (hour==13) hour= 1;
+}
+interrupt [5] void ext_int0_isr(void)
+{  
+PORTC.0=~PORTC.0;
+second++;
+if  (second==60)
+{minute++;
+ second=0;
+ if  (minute==60)
+ { minute=0;
+  hour++;
+ 
+  if (hour==13) 
+  {
+  hour=1;
+  }  
+ }
+}
+}
+ 
+void main(void)
+{
+DDRA=0B11111111;
+DDRB=0B00001111;
+DDRC.0=1;
+PORTD=0B00001100;
+//count External clock source on T0 pin. Clock on rising edge.
+// enable CTC 
+TCCR2=0B00000101;
+TIMSK=0B01000000;
+ASSR=0B00001000;
+// External Interrupt(s) initialization
+// INT0 Mode: Falling Edge
+// INT1 Mode: Falling Edge
+MCUCR=0B00001111;
+// INT0: On
+// INT1: On
+GICR=0B11000000;
+// Global enable interrupts
+// Global enable interrupts
+#asm("sei")
+while (1)
+      {
+       a=minute/10;
+       PORTB=0B00001110;
+       PORTA=sevenseg_code[a];
+       delay_ms(2);
+       b=minute%10;
+       PORTB=0B00001101;
+       PORTA=sevenseg_code[b]; 
+       delay_ms(2); 
+       a=hour/10;
+       PORTB=0B00001011;
+      if (a==1)
+       { PORTA=0x06;}
+        else
+        { PORTA=0x00;}
+       delay_ms(2);
+       b=hour%10;
+       PORTB=0B00000111;
+       PORTA=sevenseg_code[b]; 
+       delay_ms(2);
+      }
+}

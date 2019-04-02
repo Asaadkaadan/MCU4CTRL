@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"program.c" LINE:21
+compare_t0_int DSTACK_USAGE:3 DSTACK_LEVEL:3 FILE:"program.c" LINE:10

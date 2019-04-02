@@ -1,0 +1,5 @@
+VERSION:3 SOURCE_TIMESTAMP:487F0908
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega16.h"
+NODE:V LEVEL:0 LINE:2 "i -> R4,R5"
+NODE:F LEVEL:0 LINE:3 "extrenal_int0(void)"
+NODE:F LEVEL:0 LINE:12 "main(void)"

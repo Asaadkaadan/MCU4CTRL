@@ -1,0 +1,30 @@
+#include <mega16.h>
+#include <delay.h>
+unsigned char v=255;
+interrupt [2] void ext_int0_isr(void)
+{
+if(v>1)
+{  v--;
+OCR0=v;
+}
+}
+interrupt [3] void ext_int1_isr(void)
+{
+if (v<255)
+ {v++;
+  OCR0=v ;
+  }
+}
+void main(void)
+{
+DDRB.3=1;
+PORTD=0B00001100;
+MCUCR=0B00001111; 
+GICR=0B11000000; 
+//prescaler=8, enable ctc, toggle oco on compare
+TCCR0=0B00011010;
+OCR0=255;
+#asm("sei")
+while (1)
+{}      
+}

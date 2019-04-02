@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"program.c" LINE:19
+ext_int0_isr DSTACK_USAGE:2 DSTACK_LEVEL:2 FILE:"program.c" LINE:4

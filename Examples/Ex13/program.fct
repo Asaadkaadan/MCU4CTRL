@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"program.c" LINE:12
+extrenal_int0 DSTACK_USAGE:3 DSTACK_LEVEL:3 FILE:"program.c" LINE:3

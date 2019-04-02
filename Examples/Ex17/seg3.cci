@@ -1,0 +1,13 @@
+VERSION:3 SOURCE_TIMESTAMP:48877186
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\delay.h"
+NODE:V LEVEL:0 LINE:3 "sevenseg_code -> RAM:????"
+NODE:V LEVEL:0 LINE:4 "a -> R5"
+NODE:V LEVEL:0 LINE:4 "b -> R4"
+NODE:V LEVEL:0 LINE:4 "second -> R7"
+NODE:V LEVEL:0 LINE:4 "minute -> R6"
+NODE:V LEVEL:0 LINE:4 "hour -> R9"
+NODE:F LEVEL:0 LINE:5 "change_minute(void)"
+NODE:F LEVEL:0 LINE:10 "change_hour(void)"
+NODE:F LEVEL:0 LINE:15 "ext_int0_isr(void)"
+NODE:F LEVEL:0 LINE:34 "main(void)"
