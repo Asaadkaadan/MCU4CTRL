@@ -1,0 +1,12 @@
+VERSION:3 SOURCE_TIMESTAMP:48B356B7
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\delay.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr2\inc\stdlib.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr2\inc\lcd.h"
+NODE:V LEVEL:0 LINE:5 "v -> R4,R5"
+NODE:V LEVEL:0 LINE:5 "vb -> R6,R7"
+NODE:V LEVEL:0 LINE:5 "n_p -> R8,R9"
+NODE:V LEVEL:0 LINE:5 "p_p -> R10,R11"
+NODE:V LEVEL:0 LINE:6 "s -> RAM:????"
+NODE:F LEVEL:0 LINE:10 "ICP1_INT(void)"
+NODE:F LEVEL:0 LINE:34 "main(void)"

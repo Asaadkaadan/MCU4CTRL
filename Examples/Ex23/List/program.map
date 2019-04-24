@@ -1,0 +1,22 @@
+RAM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+n1                                                                0x0162       4
+n2                                                                0x0166       4
+s                                                                 0x016A      10
+_seed                                                             0x0174       4
+_base_y                                                           0x0178       4
+
+EEPROM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                          Register  Size
+--------------------------------------------------------------------------------
+press_f                                                           R5           1
+kp                                                                R4           1
+op                                                                R7           1
+_lcd_x                                                            R6           1
+_lcd_y                                                            R9           1
+_lcd_maxx                                                         R8           1

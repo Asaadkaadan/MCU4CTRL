@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <delay.h>
 #include <lcd.h>
-#asm
-.equ __lcd_port=0x15 ;PORTC
-#endasm
+
+.equ __lcd_port =0x15;
+
 unsigned int adc_data[4];
 char i;
 char *s;
@@ -22,8 +22,6 @@ delay_us(10);
 // Start the AD conversion
 ADCSRA.6=1;
 }
-
-char *s;
 void main(void)
 {
 // Select ADC1 channel  

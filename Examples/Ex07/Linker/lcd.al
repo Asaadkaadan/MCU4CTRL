@@ -97,32 +97,32 @@ __lcd_busy:
 ;PCODE: $00000040 VOL: 0
 ;PCODE: $00000041 VOL: 0
 ;PCODE: $00000042 VOL: 0
-;PCODE: $00000043 VOL: 0
     cbi  __lcd_port,__lcd_rd 	  ;RD=0
-;PCODE: $00000044 VOL: 0
+;PCODE: $00000043 VOL: 0
     in    r26,__lcd_direction
-;PCODE: $00000045 VOL: 0
+;PCODE: $00000044 VOL: 0
     ori   r26,0xf0 | (1<<__lcd_rs) | (1<<__lcd_rd) | (1<<__lcd_enable) ;set as output
-;PCODE: $00000046 VOL: 0
+;PCODE: $00000045 VOL: 0
     out   __lcd_direction,r26
-;PCODE: $00000047 VOL: 0
+;PCODE: $00000046 VOL: 0
     in    r27,__lcd_port
-;PCODE: $00000048 VOL: 0
+;PCODE: $00000047 VOL: 0
     andi  r27,0xf
-;PCODE: $00000049 VOL: 0
+;PCODE: $00000048 VOL: 0
     ld    r26,y
+;PCODE: $00000049 VOL: 0
 ;PCODE: $0000004A VOL: 0
 ;PCODE: $0000004B VOL: 0
 ;PCODE: $0000004C VOL: 0
-;PCODE: $0000004D VOL: 0
     ld    r26,y
-;PCODE: $0000004E VOL: 0
+;PCODE: $0000004D VOL: 0
     swap  r26
+;PCODE: $0000004E VOL: 0
 ;PCODE: $0000004F VOL: 0
 ;PCODE: $00000050 VOL: 0
 ;PCODE: $00000051 VOL: 0
-;PCODE: $00000052 VOL: 0
     sbi   __lcd_port,__lcd_rd     ;RD=1
+;PCODE: $00000052 VOL: 0
 ;PCODE: $00000053 VOL: 0
 ;PCODE: $00000054 VOL: 0
 ;PCODE: $00000055 VOL: 0
@@ -135,8 +135,8 @@ __lcd_busy:
 ;PCODE: $0000005C VOL: 0
 ;PCODE: $0000005D VOL: 0
 ;PCODE: $0000005E VOL: 0
-;PCODE: $0000005F VOL: 0
     sbi   __lcd_port,__lcd_rs     ;RS=1
+;PCODE: $0000005F VOL: 0
 ;PCODE: $00000060 VOL: 0
 ;PCODE: $00000061 VOL: 0
 ;PCODE: $00000062 VOL: 0
@@ -242,52 +242,55 @@ __lcd_busy:
 ;PCODE: $000000BA VOL: 0
 ;PCODE: $000000BB VOL: 0
 ;PCODE: $000000BC VOL: 0
-    push r30
 ;PCODE: $000000BD VOL: 0
-    push r31
 ;PCODE: $000000BE VOL: 0
-    ld   r26,y
+    push r30
 ;PCODE: $000000BF VOL: 0
-    set
+    push r31
 ;PCODE: $000000C0 VOL: 0
-    cpi  r26,10
+    ld   r26,y
 ;PCODE: $000000C1 VOL: 0
-    breq __lcd_putchar1
+    set
 ;PCODE: $000000C2 VOL: 0
-    clt
+    cpi  r26,10
 ;PCODE: $000000C3 VOL: 0
+    breq __lcd_putchar1
 ;PCODE: $000000C4 VOL: 0
+    clt
 ;PCODE: $000000C5 VOL: 0
 ;PCODE: $000000C6 VOL: 0
 ;PCODE: $000000C7 VOL: 0
 ;PCODE: $000000C8 VOL: 0
-	__lcd_putchar1:
 ;PCODE: $000000C9 VOL: 0
 ;PCODE: $000000CA VOL: 0
+	__lcd_putchar1:
 ;PCODE: $000000CB VOL: 0
 ;PCODE: $000000CC VOL: 0
 ;PCODE: $000000CD VOL: 0
 ;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
-	brts __lcd_putchar0
 ;PCODE: $000000D0 VOL: 0
 ;PCODE: $000000D1 VOL: 0
+	brts __lcd_putchar0
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
-    rcall __lcd_ready
 ;PCODE: $000000D4 VOL: 0
-    sbi  __lcd_port,__lcd_rs ;RS=1
 ;PCODE: $000000D5 VOL: 0
+    rcall __lcd_ready
 ;PCODE: $000000D6 VOL: 0
+    sbi  __lcd_port,__lcd_rs ;RS=1
 ;PCODE: $000000D7 VOL: 0
+    ld   r26,y
 ;PCODE: $000000D8 VOL: 0
+    st   -y,r26
 ;PCODE: $000000D9 VOL: 0
-__lcd_putchar0:
+    rcall __lcd_write_data
 ;PCODE: $000000DA VOL: 0
-    pop  r31
+__lcd_putchar0:
 ;PCODE: $000000DB VOL: 0
-    pop  r30
+    pop  r31
 ;PCODE: $000000DC VOL: 0
+    pop  r30
 ;PCODE: $000000DD VOL: 0
 ;PCODE: $000000DE VOL: 0
 ;PCODE: $000000DF VOL: 0
@@ -336,54 +339,54 @@ __lcd_putchar0:
 ;PCODE: $0000010A VOL: 0
 ;PCODE: $0000010B VOL: 0
 ;PCODE: $0000010C VOL: 0
-;PCODE: $0000010D VOL: 0
     clr   r26
-;PCODE: $0000010E VOL: 0
+;PCODE: $0000010D VOL: 0
     clr   r27
-;PCODE: $0000010F VOL: 0
+;PCODE: $0000010E VOL: 0
 __long_delay0:
-;PCODE: $00000110 VOL: 0
+;PCODE: $0000010F VOL: 0
     sbiw  r26,1         ;2 cycles
-;PCODE: $00000111 VOL: 0
+;PCODE: $00000110 VOL: 0
     brne  __long_delay0 ;2 cycles
+;PCODE: $00000111 VOL: 0
 ;PCODE: $00000112 VOL: 0
 ;PCODE: $00000113 VOL: 0
 ;PCODE: $00000114 VOL: 0
 ;PCODE: $00000115 VOL: 0
 ;PCODE: $00000116 VOL: 0
 ;PCODE: $00000117 VOL: 0
-;PCODE: $00000118 VOL: 0
-;PCODE: $00000119 VOL: 0
     cbi  __lcd_port,__lcd_rd 	  ;RD=0
-;PCODE: $0000011A VOL: 0
+;PCODE: $00000118 VOL: 0
     in    r26,__lcd_direction
-;PCODE: $0000011B VOL: 0
+;PCODE: $00000119 VOL: 0
     ori   r26,0xf7                ;set as output
-;PCODE: $0000011C VOL: 0
+;PCODE: $0000011A VOL: 0
     out   __lcd_direction,r26
-;PCODE: $0000011D VOL: 0
+;PCODE: $0000011B VOL: 0
     in    r27,__lcd_port
-;PCODE: $0000011E VOL: 0
+;PCODE: $0000011C VOL: 0
     andi  r27,0xf
-;PCODE: $0000011F VOL: 0
+;PCODE: $0000011D VOL: 0
     ld    r26,y
+;PCODE: $0000011E VOL: 0
+;PCODE: $0000011F VOL: 0
 ;PCODE: $00000120 VOL: 0
 ;PCODE: $00000121 VOL: 0
+    sbi   __lcd_port,__lcd_rd     ;RD=1
 ;PCODE: $00000122 VOL: 0
 ;PCODE: $00000123 VOL: 0
-    sbi   __lcd_port,__lcd_rd     ;RD=1
 ;PCODE: $00000124 VOL: 0
 ;PCODE: $00000125 VOL: 0
 ;PCODE: $00000126 VOL: 0
 ;PCODE: $00000127 VOL: 0
 ;PCODE: $00000128 VOL: 0
 ;PCODE: $00000129 VOL: 0
+    cbi   __lcd_port,__lcd_enable ;EN=0
 ;PCODE: $0000012A VOL: 0
+    cbi   __lcd_port,__lcd_rs     ;RS=0
 ;PCODE: $0000012B VOL: 0
 ;PCODE: $0000012C VOL: 0
-    cbi   __lcd_port,__lcd_enable ;EN=0
 ;PCODE: $0000012D VOL: 0
-    cbi   __lcd_port,__lcd_rs     ;RS=0
 ;PCODE: $0000012E VOL: 0
 ;PCODE: $0000012F VOL: 0
 ;PCODE: $00000130 VOL: 0
@@ -419,17 +422,17 @@ __long_delay0:
 ;PCODE: $0000014E VOL: 0
 ;PCODE: $0000014F VOL: 0
 ;PCODE: $00000150 VOL: 0
-    in    r26,__lcd_direction
 ;PCODE: $00000151 VOL: 0
-    andi  r26,0xf                 ;set as input
 ;PCODE: $00000152 VOL: 0
-    out   __lcd_direction,r26
 ;PCODE: $00000153 VOL: 0
-    sbi   __lcd_port,__lcd_rd     ;RD=1
 ;PCODE: $00000154 VOL: 0
+    in    r26,__lcd_direction
 ;PCODE: $00000155 VOL: 0
+    andi  r26,0xf                 ;set as input
 ;PCODE: $00000156 VOL: 0
+    out   __lcd_direction,r26
 ;PCODE: $00000157 VOL: 0
+    sbi   __lcd_port,__lcd_rd     ;RD=1
 ;PCODE: $00000158 VOL: 0
 ;PCODE: $00000159 VOL: 0
 ;PCODE: $0000015A VOL: 0
@@ -452,3 +455,8 @@ __long_delay0:
 ;PCODE: $0000016B VOL: 0
 ;PCODE: $0000016C VOL: 0
 ;PCODE: $0000016D VOL: 0
+;PCODE: $0000016E VOL: 0
+;PCODE: $0000016F VOL: 0
+;PCODE: $00000170 VOL: 0
+;PCODE: $00000171 VOL: 0
+;PCODE: $00000172 VOL: 0

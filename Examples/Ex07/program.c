@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <delay.h>
 #include <lcd.h>
+
 #asm
-.equ __lcd_port=0x15 ;PORTC
+.equ __lcd_port =0x15;
 #endasm
+
 unsigned int adc_data[4];
 char i;
 char *s;

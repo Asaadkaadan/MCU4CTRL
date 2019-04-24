@@ -1,6 +1,6 @@
 
-;CodeVisionAVR C Compiler V2.05.3 Standard
-;(C) Copyright 1998-2011 Pavel Haiduc, HP InfoTech s.r.l.
+;CodeVisionAVR C Compiler V2.05.0 Professional
+;(C) Copyright 1998-2010 Pavel Haiduc, HP InfoTech s.r.l.
 ;http://www.hpinfotech.com
 
 ;Chip type                : ATmega16
@@ -16,11 +16,10 @@
 ;Promote 'char' to 'int'  : Yes
 ;'char' is unsigned       : Yes
 ;8 bit enums              : Yes
-;Global 'const' stored in FLASH     : No
-;Enhanced function parameter passing: Yes
-;Enhanced core instructions         : On
-;Smart register allocation          : On
-;Automatic register allocation      : On
+;global 'const' stored in FLASH: No
+;Enhanced core instructions    : On
+;Smart register allocation     : On
+;Automatic register allocation : On
 
 	#pragma AVRPART ADMIN PART_NAME ATmega16
 	#pragma AVRPART MEMORY PROG_FLASH 16384
@@ -328,18 +327,6 @@ __DELAY_USW_LOOP:
 	.MACRO __POINTW2MN
 	LDI  R26,LOW(@0+(@1))
 	LDI  R27,HIGH(@0+(@1))
-	.ENDM
-
-	.MACRO __POINTW2FN
-	LDI  R26,LOW(2*@0+(@1))
-	LDI  R27,HIGH(2*@0+(@1))
-	.ENDM
-
-	.MACRO __POINTD2FN
-	LDI  R26,LOW(2*@0+(@1))
-	LDI  R27,HIGH(2*@0+(@1))
-	LDI  R24,BYTE3(2*@0+(@1))
-	LDI  R25,BYTE4(2*@0+(@1))
 	.ENDM
 
 	.MACRO __POINTBRM
@@ -1238,7 +1225,7 @@ __GLOBAL_INI_END:
 ;#include <delay.h>
 ;#include <lcd.h>
 ;#asm
-.equ __lcd_port=0x15 ;PORTC
+.equ __lcd_port =0x15;PORTC
 ; 0000 0007 #endasm
 ;unsigned int adc_data[4];
 ;char i;
@@ -1310,7 +1297,8 @@ _main:
 	LDI  R30,LOW(139)
 	OUT  0x6,R30
 ; 0000 0021 lcd_init(16);
-	LDI  R26,LOW(16)
+	LDI  R30,LOW(16)
+	ST   -Y,R30
 	CALL _lcd_init
 ; 0000 0022 lcd_clear();
 	CALL _lcd_clear
@@ -1328,105 +1316,136 @@ _0x8:
 	LDS  R31,_adc_data+1
 	ST   -Y,R31
 	ST   -Y,R30
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _itoa
 ; 0000 002A     lcd_gotoxy(0,0);
 	LDI  R30,LOW(0)
 	ST   -Y,R30
-	LDI  R26,LOW(0)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 002B     lcd_puts("A0=    ");
-	__POINTW2MN _0xB,0
+	__POINTW1MN _0xB,0
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _lcd_puts
 ; 0000 002C     lcd_gotoxy(3,0);
 	LDI  R30,LOW(3)
 	ST   -Y,R30
-	LDI  R26,LOW(0)
+	LDI  R30,LOW(0)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 002D     lcd_puts(s);
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _lcd_puts
 ; 0000 002E     delay_ms(5);
-	LDI  R26,LOW(5)
-	LDI  R27,0
+	LDI  R30,LOW(5)
+	LDI  R31,HIGH(5)
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _delay_ms
 ; 0000 002F     itoa(adc_data[1],s);
 	__GETW1MN _adc_data,2
 	ST   -Y,R31
 	ST   -Y,R30
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _itoa
 ; 0000 0030     lcd_gotoxy(8,0);
 	LDI  R30,LOW(8)
 	ST   -Y,R30
-	LDI  R26,LOW(0)
+	LDI  R30,LOW(0)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 0031     lcd_puts("A1=    ");
-	__POINTW2MN _0xB,8
+	__POINTW1MN _0xB,8
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _lcd_puts
 ; 0000 0032     lcd_gotoxy(11,0);
 	LDI  R30,LOW(11)
 	ST   -Y,R30
-	LDI  R26,LOW(0)
+	LDI  R30,LOW(0)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 0033     lcd_puts(s);
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _lcd_puts
 ; 0000 0034     delay_ms(5);
-	LDI  R26,LOW(5)
-	LDI  R27,0
+	LDI  R30,LOW(5)
+	LDI  R31,HIGH(5)
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _delay_ms
 ; 0000 0035     itoa(adc_data[2],s);
 	__GETW1MN _adc_data,4
 	ST   -Y,R31
 	ST   -Y,R30
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _itoa
 ; 0000 0036     lcd_gotoxy(0,1);
 	LDI  R30,LOW(0)
 	ST   -Y,R30
-	LDI  R26,LOW(1)
+	LDI  R30,LOW(1)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 0037     lcd_puts("A2=    ");
-	__POINTW2MN _0xB,16
+	__POINTW1MN _0xB,16
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _lcd_puts
 ; 0000 0038     lcd_gotoxy(3,1);
 	LDI  R30,LOW(3)
 	ST   -Y,R30
-	LDI  R26,LOW(1)
+	LDI  R30,LOW(1)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 0039     lcd_puts(s);
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _lcd_puts
 ; 0000 003A     delay_ms(5);
-	LDI  R26,LOW(5)
-	LDI  R27,0
+	LDI  R30,LOW(5)
+	LDI  R31,HIGH(5)
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _delay_ms
 ; 0000 003B     itoa(adc_data[3],s);
 	__GETW1MN _adc_data,6
 	ST   -Y,R31
 	ST   -Y,R30
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _itoa
 ; 0000 003C     lcd_gotoxy(8,1);
 	LDI  R30,LOW(8)
 	ST   -Y,R30
-	LDI  R26,LOW(1)
+	LDI  R30,LOW(1)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 003D     lcd_puts("A3=    ");
-	__POINTW2MN _0xB,24
+	__POINTW1MN _0xB,24
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _lcd_puts
 ; 0000 003E     lcd_gotoxy(11,1);
 	LDI  R30,LOW(11)
 	ST   -Y,R30
-	LDI  R26,LOW(1)
+	LDI  R30,LOW(1)
+	ST   -Y,R30
 	CALL _lcd_gotoxy
 ; 0000 003F     lcd_puts(s);
-	MOVW R26,R6
+	ST   -Y,R7
+	ST   -Y,R6
 	CALL _lcd_puts
 ; 0000 0040     delay_ms(5);
-	LDI  R26,LOW(5)
-	LDI  R27,0
+	LDI  R30,LOW(5)
+	LDI  R31,HIGH(5)
+	ST   -Y,R31
+	ST   -Y,R30
 	CALL _delay_ms
 ; 0000 0041   }
 	RJMP _0x8
@@ -1440,8 +1459,6 @@ _0xB:
 
 	.CSEG
 _itoa:
-	ST   -Y,R27
-	ST   -Y,R26
     ld   r26,y+
     ld   r27,y+
     ld   r30,y+
@@ -1542,7 +1559,6 @@ __lcd_write_nibble_G101:
 	CALL __lcd_delay_G101
 	RET
 __lcd_write_data:
-	ST   -Y,R26
     cbi  __lcd_port,__lcd_rd 	  ;RD=0
     in    r26,__lcd_direction
     ori   r26,0xf0 | (1<<__lcd_rs) | (1<<__lcd_rd) | (1<<__lcd_enable) ;set as output
@@ -1574,7 +1590,6 @@ _lcd_read_byte0_G101:
     or    r30,r26
 	RET
 _lcd_gotoxy:
-	ST   -Y,R26
 	CALL __lcd_ready
 	LD   R30,Y
 	LDI  R31,0
@@ -1582,7 +1597,8 @@ _lcd_gotoxy:
 	SBCI R31,HIGH(-__base_y_G101)
 	LD   R30,Z
 	LDD  R26,Y+1
-	ADD  R26,R30
+	ADD  R30,R26
+	ST   -Y,R30
 	CALL __lcd_write_data
 	LDD  R4,Y+1
 	LDD  R9,Y+0
@@ -1590,20 +1606,22 @@ _lcd_gotoxy:
 	RET
 _lcd_clear:
 	CALL __lcd_ready
-	LDI  R26,LOW(2)
+	LDI  R30,LOW(2)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	CALL __lcd_ready
-	LDI  R26,LOW(12)
+	LDI  R30,LOW(12)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	CALL __lcd_ready
-	LDI  R26,LOW(1)
+	LDI  R30,LOW(1)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	LDI  R30,LOW(0)
 	MOV  R9,R30
 	MOV  R4,R30
 	RET
 _lcd_putchar:
-	ST   -Y,R26
     push r30
     push r31
     ld   r26,y
@@ -1617,22 +1635,21 @@ _lcd_putchar:
 	INC  R9
 	LDI  R30,LOW(0)
 	ST   -Y,R30
-	MOV  R26,R9
+	ST   -Y,R9
 	RCALL _lcd_gotoxy
 	brts __lcd_putchar0
 _0x2020004:
 	INC  R4
     rcall __lcd_ready
     sbi  __lcd_port,__lcd_rs ;RS=1
-	LD   R26,Y
-	CALL __lcd_write_data
+    ld   r26,y
+    st   -y,r26
+    rcall __lcd_write_data
 __lcd_putchar0:
     pop  r31
     pop  r30
 	JMP  _0x20A0001
 _lcd_puts:
-	ST   -Y,R27
-	ST   -Y,R26
 	ST   -Y,R17
 _0x2020005:
 	LDD  R26,Y+1
@@ -1643,7 +1660,7 @@ _0x2020005:
 	MOV  R17,R30
 	CPI  R30,0
 	BREQ _0x2020007
-	MOV  R26,R17
+	ST   -Y,R17
 	RCALL _lcd_putchar
 	RJMP _0x2020005
 _0x2020007:
@@ -1658,7 +1675,6 @@ __long_delay0:
     brne  __long_delay0 ;2 cycles
 	RET
 __lcd_init_write_G101:
-	ST   -Y,R26
     cbi  __lcd_port,__lcd_rd 	  ;RD=0
     in    r26,__lcd_direction
     ori   r26,0xf7                ;set as output
@@ -1670,7 +1686,6 @@ __lcd_init_write_G101:
     sbi   __lcd_port,__lcd_rd     ;RD=1
 	RJMP _0x20A0001
 _lcd_init:
-	ST   -Y,R26
     cbi   __lcd_port,__lcd_enable ;EN=0
     cbi   __lcd_port,__lcd_rs     ;RS=0
 	LDD  R8,Y+0
@@ -1681,25 +1696,32 @@ _lcd_init:
 	SUBI R30,-LOW(192)
 	__PUTB1MN __base_y_G101,3
 	RCALL __long_delay_G101
-	LDI  R26,LOW(48)
+	LDI  R30,LOW(48)
+	ST   -Y,R30
 	RCALL __lcd_init_write_G101
 	RCALL __long_delay_G101
-	LDI  R26,LOW(48)
+	LDI  R30,LOW(48)
+	ST   -Y,R30
 	RCALL __lcd_init_write_G101
 	RCALL __long_delay_G101
-	LDI  R26,LOW(48)
+	LDI  R30,LOW(48)
+	ST   -Y,R30
 	RCALL __lcd_init_write_G101
 	RCALL __long_delay_G101
-	LDI  R26,LOW(32)
+	LDI  R30,LOW(32)
+	ST   -Y,R30
 	RCALL __lcd_init_write_G101
 	RCALL __long_delay_G101
-	LDI  R26,LOW(40)
+	LDI  R30,LOW(40)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	RCALL __long_delay_G101
-	LDI  R26,LOW(4)
+	LDI  R30,LOW(4)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	RCALL __long_delay_G101
-	LDI  R26,LOW(133)
+	LDI  R30,LOW(133)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	RCALL __long_delay_G101
     in    r26,__lcd_direction
@@ -1713,7 +1735,8 @@ _lcd_init:
 	RJMP _0x20A0001
 _0x202000B:
 	CALL __lcd_ready
-	LDI  R26,LOW(6)
+	LDI  R30,LOW(6)
+	ST   -Y,R30
 	CALL __lcd_write_data
 	CALL _lcd_clear
 	LDI  R30,LOW(1)
@@ -1739,12 +1762,14 @@ __base_y_G101:
 
 	.CSEG
 _delay_ms:
-	adiw r26,0
+	ld   r30,y+
+	ld   r31,y+
+	adiw r30,0
 	breq __delay_ms1
 __delay_ms0:
 	__DELAY_USW 0xFA
 	wdr
-	sbiw r26,1
+	sbiw r30,1
 	brne __delay_ms0
 __delay_ms1:
 	ret

@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"program.c" LINE:14
+ltoa DSTACK_USAGE:12 DSTACK_LEVEL:12 FILE:"C:\cvavr2\lib\stdlib.lib" LINE:933
