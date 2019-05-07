@@ -1,0 +1,16 @@
+RAM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+tx_buffer                                                         0x017E      20
+
+EEPROM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                          Register  Size
+--------------------------------------------------------------------------------
+press_f                                                           R5           1
+tx_wr_index                                                       R4           1
+tx_rd_index                                                       R7           1
+tx_counter                                                        R6           1

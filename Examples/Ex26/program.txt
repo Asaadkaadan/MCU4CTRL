@@ -1,0 +1,23 @@
+/*unsigned char USART_Receive( void )
+{
+/* Wait for data to be received */
+//while ( !UCSRA.RXC ) ;
+/* Get and return received data from buffer */
+return UDR;
+}
+void main( void )
+{DDRA=0B00000111;
+USART_Init ( MYUBRR );
+while(1){
+ch=USART_Receive();
+switch (ch)
+{
+case 'a':
+PORTA.0=~PORTA.0;break;
+case 'b':
+PORTA.1=~PORTA.1;break;
+case 'c':
+PORTA.2=~PORTA.2;break;
+}
+}
+} */
