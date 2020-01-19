@@ -1,0 +1,9 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"ssss.c" LINE:149
+Scan DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"ssss.c" LINE:24
+ftoa DSTACK_USAGE:17 DSTACK_LEVEL:17 FILE:"C:\cvavreval\lib\stdlib.lib" LINE:963
+floor DSTACK_USAGE:4 DSTACK_LEVEL:21 FILE:"C:\cvavreval\lib\math.lib" LINE:667
+ftrunc DSTACK_USAGE:4 DSTACK_LEVEL:25 FILE:"C:\cvavreval\lib\math.lib" LINE:550
+ext_int0_isr DSTACK_USAGE:12 DSTACK_LEVEL:37 FILE:"ssss.c" LINE:65
+ftoa DSTACK_USAGE:17 DSTACK_LEVEL:54 FILE:"C:\cvavreval\lib\stdlib.lib" LINE:963
+floor DSTACK_USAGE:4 DSTACK_LEVEL:58 FILE:"C:\cvavreval\lib\math.lib" LINE:667
+ftrunc DSTACK_USAGE:4 DSTACK_LEVEL:62 FILE:"C:\cvavreval\lib\math.lib" LINE:550

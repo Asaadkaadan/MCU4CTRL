@@ -1,0 +1,194 @@
+;#include <mega16.h>
+;PCODE: $00000000 VOL: 0
+	#ifndef __SLEEP_DEFINED__
+;PCODE: $00000001 VOL: 0
+	#define __SLEEP_DEFINED__
+;PCODE: $00000002 VOL: 0
+	.EQU __se_bit=0x40
+;PCODE: $00000003 VOL: 0
+	.EQU __sm_mask=0xB0
+;PCODE: $00000004 VOL: 0
+	.EQU __sm_powerdown=0x20
+;PCODE: $00000005 VOL: 0
+	.EQU __sm_powersave=0x30
+;PCODE: $00000006 VOL: 0
+	.EQU __sm_standby=0xA0
+;PCODE: $00000007 VOL: 0
+	.EQU __sm_ext_standby=0xB0
+;PCODE: $00000008 VOL: 0
+	.EQU __sm_adc_noise_red=0x10
+;PCODE: $00000009 VOL: 0
+	.SET power_ctrl_reg=mcucr
+;PCODE: $0000000A VOL: 0
+	#endif
+;PCODE: $0000000B VOL: 0
+;PCODE: $0000000C VOL: 0
+;#include <delay.h>
+;#include <lcd.h>
+;#include <stdlib.h>
+;
+;#asm                      // ⁄—Ì›… «· lcd
+;PCODE: $0000000D VOL: 0
+   .equ __lcd_PORT=0x15; PORTC
+;PCODE: $0000000E VOL: 0
+;PCODE: $0000000F VOL: 0
+; 0000 0008 #endasm
+;int i;
+;float speed_ref=0;   //«·”—⁄… «·„—Ã⁄Ì… Ì·Ì «‰« »œÌ «⁄ÿÌ Ì«Â«
+;bit f=0; //⁄—›‰« «·„ ÕÊ· f „‘«‰ Êﬁ  “Ì«œ… «·ﬂ»«” „«Ì«Œœ «ﬂ — „‰ „—…  ⁄·Ì„…
+;unsigned char *b;
+;
+;interrupt [EXT_INT0] void int0(void)
+; 0000 000F {
+
+	.CSEG
+;PCODE: $00000010 VOL: 0
+;PCODE: $00000011 VOL: 0
+; 0000 0010 
+; 0000 0011 }
+;PCODE: $00000012 VOL: 0
+;PCODE: $00000013 VOL: 0
+;PCODE: $00000014 VOL: 0
+;void main(void)
+; 0000 0013 {
+;PCODE: $00000015 VOL: 0
+; 0000 0014 PORTD.2=1;
+;PCODE: $00000016 VOL: 0
+;PCODE: $00000017 VOL: 0
+; 0000 0015 GICR=0b01000000;  // ›⁄·Ì ﬁÿ» «·„ﬁ«ÿ⁄… ’›—
+;PCODE: $00000018 VOL: 0
+;PCODE: $00000019 VOL: 0
+; 0000 0016 MCUCR=0b00000010;
+;PCODE: $0000001A VOL: 0
+;PCODE: $0000001B VOL: 0
+; 0000 0017  //Ã»Â… Â«»ÿ… «‰ ﬁ«· „‰ 1 «·Ï 0
+; 0000 0018  #asm("sei")
+;PCODE: $0000001C VOL: 0
+; 0000 0019    lcd_init(16);
+;PCODE: $0000001D VOL: 0
+;PCODE: $0000001E VOL: 0
+; 0000 001A   while (1)
+;PCODE: $0000001F VOL: 0
+; 0000 001B         {  if(PIND.0==0  && f==0)
+;PCODE: $00000020 VOL: 0
+;PCODE: $00000021 VOL: 0
+;PCODE: $00000022 VOL: 0
+;PCODE: $00000023 VOL: 0
+;PCODE: $00000024 VOL: 0
+;PCODE: $00000025 VOL: 0
+;PCODE: $00000026 VOL: 0
+;PCODE: $00000027 VOL: 0
+;PCODE: $00000028 VOL: 0
+;PCODE: $00000029 VOL: 0
+; 0000 001C 
+; 0000 001D       {
+; 0000 001E        if(speed_ref<600)     //·«‰Ê «·„Õ—ﬂ »œÊ— 600 —«œÌ«‰ ⁄«·À«‰Ì…
+;PCODE: $0000002A VOL: 0
+;PCODE: $0000002B VOL: 0
+;PCODE: $0000002C VOL: 0
+;PCODE: $0000002D VOL: 0
+; 0000 001F         speed_ref+=5;
+;PCODE: $0000002E VOL: 0
+;PCODE: $0000002F VOL: 0
+;PCODE: $00000030 VOL: 0
+;PCODE: $00000031 VOL: 0
+; 0000 0020         f=1;
+;PCODE: $00000032 VOL: 0
+;PCODE: $00000033 VOL: 0
+;PCODE: $00000034 VOL: 0
+;PCODE: $00000035 VOL: 0
+; 0000 0021        }
+; 0000 0022           { if(PIND.1==0  && f==0)
+;PCODE: $00000036 VOL: 0
+;PCODE: $00000037 VOL: 0
+;PCODE: $00000038 VOL: 0
+;PCODE: $00000039 VOL: 0
+;PCODE: $0000003A VOL: 0
+;PCODE: $0000003B VOL: 0
+;PCODE: $0000003C VOL: 0
+;PCODE: $0000003D VOL: 0
+;PCODE: $0000003E VOL: 0
+;PCODE: $0000003F VOL: 0
+;PCODE: $00000040 VOL: 0
+; 0000 0023                    {
+; 0000 0024                     if (speed_ref>0)
+;PCODE: $00000041 VOL: 0
+;PCODE: $00000042 VOL: 0
+;PCODE: $00000043 VOL: 0
+; 0000 0025                      speed_ref-=5;
+;PCODE: $00000044 VOL: 0
+;PCODE: $00000045 VOL: 0
+;PCODE: $00000046 VOL: 0
+;PCODE: $00000047 VOL: 0
+; 0000 0026                       f=1;
+;PCODE: $00000048 VOL: 0
+;PCODE: $00000049 VOL: 0
+;PCODE: $0000004A VOL: 0
+;PCODE: $0000004B VOL: 0
+; 0000 0027                      }
+; 0000 0028 
+; 0000 0029                      if(PIND.0==1 && PIND.1==1 && f==1)
+;PCODE: $0000004C VOL: 0
+;PCODE: $0000004D VOL: 0
+;PCODE: $0000004E VOL: 0
+;PCODE: $0000004F VOL: 0
+;PCODE: $00000050 VOL: 0
+;PCODE: $00000051 VOL: 0
+;PCODE: $00000052 VOL: 0
+;PCODE: $00000053 VOL: 0
+;PCODE: $00000054 VOL: 0
+;PCODE: $00000055 VOL: 0
+;PCODE: $00000056 VOL: 0
+;PCODE: $00000057 VOL: 0
+;PCODE: $00000058 VOL: 0
+;PCODE: $00000059 VOL: 0
+; 0000 002A                      f=0;
+;PCODE: $0000005A VOL: 0
+;PCODE: $0000005B VOL: 0
+;PCODE: $0000005C VOL: 0
+; 0000 002B                           }
+;PCODE: $0000005D VOL: 0
+; 0000 002C 
+; 0000 002D 
+; 0000 002E 
+; 0000 002F 
+; 0000 0030         lcd_clear();
+;PCODE: $0000005E VOL: 0
+; 0000 0031         lcd_puts("fast=");
+;PCODE: $0000005F VOL: 0
+;PCODE: $00000060 VOL: 0
+;PCODE: $00000061 VOL: 0
+; 0000 0032         lcd_gotoxy(7,0);
+;PCODE: $00000062 VOL: 0
+;PCODE: $00000063 VOL: 0
+;PCODE: $00000064 VOL: 0
+;PCODE: $00000065 VOL: 0
+; 0000 0033         //
+; 0000 0034         //
+; 0000 0035           lcd_puts("voltage=");
+;PCODE: $00000066 VOL: 0
+;PCODE: $00000067 VOL: 0
+;PCODE: $00000068 VOL: 0
+; 0000 0036           lcd_gotoxy(10,1);
+;PCODE: $00000069 VOL: 0
+;PCODE: $0000006A VOL: 0
+;PCODE: $0000006B VOL: 0
+;PCODE: $0000006C VOL: 0
+; 0000 0037             //
+; 0000 0038         //
+; 0000 0039           delay_ms(1000);
+;PCODE: $0000006D VOL: 0
+;PCODE: $0000006E VOL: 0
+; 0000 003A 
+; 0000 003B 
+; 0000 003C         }
+;PCODE: $0000006F VOL: 0
+;PCODE: $00000070 VOL: 0
+; 0000 003D }
+;PCODE: $00000071 VOL: 0
+;PCODE: $00000072 VOL: 0
+;PCODE: $00000073 VOL: 0
+
+	.DSEG
+_0x13:
+	.BYTE 0xF

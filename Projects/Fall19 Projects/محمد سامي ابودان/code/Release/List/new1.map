@@ -1,0 +1,38 @@
+RAM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+mod                                                               0x0196       2
+x                                                                 0x0198       2
+cnt                                                               0x019A       2
+sec                                                               0x019C       2
+step                                                              0x019E      16
+Kp                                                                0x01AE       4
+Ki                                                                0x01B2       4
+dt                                                                0x01B6       4
+integral                                                          0x01BA       4
+Io                                                                0x01BE       4
+out                                                               0x01C2       4
+Po                                                                0x01C6       4
+error                                                             0x01CA       4
+vr                                                                0x01CE       4
+z                                                                 0x01D2       4
+va                                                                0x01D6       4
+c                                                                 0x01DA       2
+_base_y                                                           0x01DC       4
+_lcd_x                                                            0x01E0       1
+_lcd_y                                                            0x01E1       1
+_lcd_maxx                                                         0x01E2       1
+_seed                                                             0x01E3       4
+
+EEPROM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                          Register  Size
+--------------------------------------------------------------------------------
+f1                                                                R4,R5        2
+counter                                                           R6,R7        2
+f2                                                                R8,R9        2
+state                                                             R10,R11      2
+dir                                                               R12,R13      2

@@ -1,0 +1,250 @@
+/*******************************************************
+This program was created by the CodeWizardAVR V3.37 
+Automatic Program Generator
+© Copyright 1998-2019 Pavel Haiduc, HP InfoTech s.r.l.
+http://www.hpinfotech.com
+
+Project : 
+Version : 
+Date    : 11/21/2019
+Author  : 
+Company : 
+Comments: 
+
+
+Chip type               : ATmega16A
+Program type            : Application
+AVR Core Clock frequency: 8.000000 MHz
+Memory model            : Small
+External RAM size       : 0
+Data Stack size         : 256
+*******************************************************/
+#include <mega16a.h>
+#include <lcd.h>
+#include <delay.h>
+#include <stdlib.h>
+#include <string.h>
+
+#asm
+.equ __lcd_port=0x1B ;PORTA
+#endasm
+
+unsigned int x,y,Time1,Time2,rpm1,rpm2;
+unsigned char *v;
+char ch,i,j,k;
+unsigned char txt[12];
+unsigned char tx1[]=">Ready to Recive ";
+unsigned char txt2[]=" **Very Long**";
+
+//________________________________________________________________     
+interrupt [USART_RXC] void uasrt_rx(void)
+{ch=UDR;
+txt[i]=ch;
+if(i<11)
+i++;
+    else
+    {i=0;
+    while (txt2[k]!=0)
+    {while(UCSRA.5==0);
+    UDR=txt2[k];
+    k++;
+    }
+    if (txt2[k]==0)
+    {while(UCSRA.5==0);
+    UDR=13;
+    ch=UDR;
+    k=0;
+    }
+    }        
+if(ch==13)
+    {i=0;
+    while (tx1[j]!=0)
+        {while(UCSRA.5==0);
+        UDR=tx1[j];
+        j++;
+        }
+    j=0;            
+    }
+}
+
+interrupt [EXT_INT0] void int0 (void)
+{if (OCR0!=0)
+x++;
+else x=0;       
+}
+
+interrupt [TIM0_OVF] void timer0_ovf (void)
+{Time1++;
+if(Time1==500)
+    {rpm1=x*60/20;
+    x=0;
+    Time1=0;
+    }
+}
+
+interrupt [TIM2_OVF] void timer2_ovf (void)
+{Time2++;
+if(Time2==500)
+    {rpm2=y*60/20;
+    y=0;
+    Time2=0;
+    }
+}
+
+interrupt [EXT_INT1] void int1 (void)
+{if (OCR2!=0)
+y++;
+else y=0;
+}
+
+//________________________________________________________________     
+void main(void)
+{
+DDRB=0b11001000;
+DDRC=0b00001111;
+DDRD=0b10000000;
+PORTD=0b00001100;
+//________________________________________________________________     
+// External Interrupt(s) initializtion
+// INT0 = on
+// INT0 Mode: Falling Edge
+// INT1 = on
+// INT1 Mode: Falling Edge
+GICR=0b11000000;
+MCUCR=0b00001010;
+//________________________________________________________________     
+
+//________________________________________________________________     
+lcd_init(16);
+lcd_puts("Satart....");
+delay_ms(1000);
+lcd_clear();
+//________________________________________________________________     
+// Timer/Counter 0 initialization
+// Timer/Counter 1 initialization
+// Clock source: System Clock
+// Mode: Fast PWM
+// Prescaler = 64
+// OCR output: Non-Inverted
+TCCR0=0B01101011;
+TCCR2=0B01101100;
+//________________________________________________________________     
+// Timer Interrupt initialization
+TIMSK=0b01000001;
+TCNT0=0x00;
+//________________________________________________________________     
+//USART
+UBRRH=0x00;
+UBRRL=0x33;
+UCSRB=0b10011000;
+UCSRC=0b10000110;
+
+while (tx1[j]!=0)
+    {while(UCSRA.5==0);
+    UDR=tx1[j];
+    j++;
+    }
+j=0;
+
+// Global enable interrupts
+#asm("sei")
+
+while (1)
+      {
+      delay_ms(100);
+      lcd_clear();      
+      txt[i]=0;
+//________________________________________________________________     
+      // Motor 1 
+      if(strcmp(txt,"mo1 on 25")==0)     
+      OCR0=60;
+      if(strcmp(txt,"mo1 on 50")==0)
+      OCR0=127;
+      if(strcmp(txt,"mo1 on 75")==0)
+      OCR0=190;
+      if(strcmp(txt,"mo1 on 100")==0)
+      OCR0=255;
+      
+      if (strcmp(txt,"mo1 cw")==0)
+      {PORTC.3=0;   PORTC.2=1;}
+
+      else if(strcmp(txt,"mo1 ccw")==0)
+      {PORTC.3=1;   PORTC.2=0;} 
+      
+      if (strcmp(txt,"mo1 off")==0)
+      {
+      OCR0=0;
+      PORTC.3=0;
+      PORTC.2=0;
+      PORTB.7=0;
+      }
+      
+//________________________________________________________________     
+      // Motor 2
+      if(strcmp(txt,"mo2 on 25")==0)     
+      OCR2=60;
+      if(strcmp(txt,"mo2 on 50")==0)
+      OCR2=127;
+      if(strcmp(txt,"mo2 on 75")==0)
+      OCR2=190;
+      if(strcmp(txt,"mo2 on 100")==0)
+      OCR2=255;
+      if (strcmp(txt,"mo2 off")==0)
+        {PORTC.0=0;
+        PORTC.1=0;
+        OCR2=0;
+        PORTB.6=0;
+        }     
+      
+      if (strcmp(txt,"mo2 cw")==0)
+      {PORTC.0=1;   PORTC.1=0;}
+      
+      else if(strcmp(txt,"mo2 ccw")==0)
+      {PORTC.0=0;   PORTC.1=1;}
+      
+//________________________________________________________________          
+      //Turn Motor1 Led On
+      if (OCR0>1&&(PORTC.3==!PORTC.2))
+      PORTB.7=1;
+      //Turn Motor2 Led On 
+      if (OCR2>1&&(PORTC.0==!PORTC.1))
+      PORTB.6=1;
+      
+//________________________________________________________________     
+      lcd_gotoxy(0,0); 
+      if(OCR0>1&&PORTC.2==1)        //Motor1 On and INT2 (L298) On 
+      lcd_puts("Mo1 On CW");
+
+      else if(OCR0>1&&PORTC.3==1)   //Motor1 On and INT1 (L298) On
+      lcd_puts("Mo1 On CCW");
+        
+      else lcd_puts("Mo1 Off");     //Motor2 Off and INT1 && INT2 (L298) off
+      
+      lcd_gotoxy(11,0);
+      itoa(rpm1,v);
+      lcd_puts(v);
+      
+      lcd_gotoxy(13,0);
+      lcd_puts("RPM");
+      
+//________________________________________________________________     
+      lcd_gotoxy(0,1);
+             
+      if(OCR2>1&&PORTC.0==1)        //Motor2 On and INT4 (L298) On
+      lcd_puts("Mo2 On CW");
+      
+      else if(OCR2>1&&PORTC.1==1) //Motor2 On and INT3 (L298) On
+      lcd_puts("Mo2 On CCW");
+
+      else
+      lcd_puts("Mo2 Off");          //Motor2 Off and INT3 && INT4 (L298) off
+      
+      lcd_gotoxy(11,1);
+      itoa(rpm2,v);
+      lcd_puts(v);
+      
+      lcd_gotoxy(13,1);
+      lcd_puts("RPM");
+      
+      }
+}

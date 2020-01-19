@@ -1,0 +1,6 @@
+main DSTACK_USAGE:44 DSTACK_LEVEL:44 FILE:"A.c" LINE:75
+lcd_puts DSTACK_USAGE:3 DSTACK_LEVEL:47 FILE:"C:\cvavr2\lib\lcd.lib" LINE:210
+lcd_putchar DSTACK_USAGE:1 DSTACK_LEVEL:48 FILE:"C:\cvavr2\lib\lcd.lib" LINE:178
+lcd_gotoxy DSTACK_USAGE:2 DSTACK_LEVEL:50 FILE:"C:\cvavr2\lib\lcd.lib" LINE:158
+_lcd_write_data DSTACK_USAGE:1 DSTACK_LEVEL:51 FILE:"C:\cvavr2\lib\lcd.lib" LINE:77
+direction DSTACK_USAGE:4 DSTACK_LEVEL:55 FILE:"A.c" LINE:60

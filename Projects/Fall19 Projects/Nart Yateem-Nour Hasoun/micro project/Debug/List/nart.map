@@ -1,0 +1,49 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+adc_data                                                                          0x016F       4
+a                                                                                 0x0173       4
+temp                                                                              0x0177       4
+m1                                                                                0x017B       4
+m2                                                                                0x017F       4
+m3                                                                                0x0183       4
+volt                                                                              0x0187       4
+lux                                                                               0x018B       4
+z                                                                                 0x018F       4
+_seed                                                                             0x0193       4
+_base_y                                                                           0x0197       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+i                                                                                 R5           1
+s                                                                                 R6,R7        2
+x                                                                                 R8,R9        2
+y                                                                                 R10,R11      2
+_lcd_x                                                                            R4           1
+_lcd_y                                                                            R13          1
+_lcd_maxx                                                                         R12          1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+adc_isr                                                                           0x00076     37
+main                                                                              0x0009B    336
+itoa                                                                              0x001EB     46
+_lcd_delay_G101                                                                   0x00219      4
+_lcd_ready                                                                        0x0021D     17
+_lcd_write_nibble_G101                                                            0x0022E     10
+_lcd_write_data                                                                   0x00238     15
+_lcd_read_nibble_G101                                                             0x00247      9
+lcd_read_byte0_G101                                                               0x00250      9
+lcd_gotoxy                                                                        0x00259     16
+lcd_clear                                                                         0x00269     19
+lcd_putchar                                                                       0x0027C     26
+lcd_puts                                                                          0x00296     17
+_long_delay_G101                                                                  0x002A7      5
+_lcd_init_write_G101                                                              0x002AC     12
+lcd_init                                                                          0x002B8     51

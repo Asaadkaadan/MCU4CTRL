@@ -1,0 +1,75 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+adc_data                                                                          0x018C      12
+buffer1                                                                           0x0198      20
+buffer2                                                                           0x01AC      20
+message                                                                           0x01C0       1
+data                                                                              0x01C1      20
+_ki                                                                               0x01D5       4
+_kd                                                                               0x01D9       4
+setpoint                                                                          0x01DD       4
+sensor                                                                            0x01E1       4
+error                                                                             0x01E5       4
+integral                                                                          0x01E9       4
+derivative                                                                        0x01ED       4
+old_integral                                                                      0x01F1       4
+pre_error                                                                         0x01F5       4
+rx_buffer                                                                         0x01F9       8
+rx_rd_index                                                                       0x0201       1
+rx_counter                                                                        0x0202       1
+tx_buffer                                                                         0x0203       8
+tx_wr_index                                                                       0x020B       1
+tx_rd_index                                                                       0x020C       1
+tx_counter                                                                        0x020D       1
+_seed                                                                             0x020E       4
+_base_y                                                                           0x0212       4
+_lcd_x                                                                            0x0216       1
+_lcd_y                                                                            0x0217       1
+_lcd_maxx                                                                         0x0218       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+Mode                                                                              R4,R5        2
+i                                                                                 R6,R7        2
+_kp                                                                               R8,R9        2
+fill_display                                                                      R10,R11      2
+dis_display                                                                       R12,R13      2
+rx_buffer_overflow                                                                R2.0      1bit
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+ext_int0_isr                                                                      0x000AF      5
+ext_int1_isr                                                                      0x000B4      5
+ext_int2_isr                                                                      0x000B9      8
+usart_rx_isr                                                                      0x000C1     36
+usart_tx_isr                                                                      0x000E5     36
+putchar                                                                           0x00109     41
+send_txtl                                                                         0x00132     25
+adc_isr                                                                           0x0014B     41
+PI_calculation                                                                    0x00174    119
+main                                                                              0x001EB    323
+abs                                                                               0x0032E     10
+ftoa                                                                              0x00338    194
+_lcd_write_nibble_G101                                                            0x003FA     20
+_lcd_write_data                                                                   0x0040E     12
+lcd_gotoxy                                                                        0x0041A     17
+lcd_clear                                                                         0x0042B     14
+lcd_putchar                                                                       0x00439     32
+lcd_puts                                                                          0x00459     17
+lcd_init                                                                          0x0046A     47
+put_buff_G102                                                                     0x00499     58
+_ftoe_G102                                                                        0x004D3    214
+_print_G102                                                                       0x005A9    534
+sprintf                                                                           0x007BF     52
+strcpyf                                                                           0x007F3     13
+strlen                                                                            0x00800     12
+strlenf                                                                           0x0080C     13
+ftrunc                                                                            0x00819     49
+floor                                                                             0x0084A     21

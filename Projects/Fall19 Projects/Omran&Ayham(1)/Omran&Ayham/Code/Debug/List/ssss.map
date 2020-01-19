@@ -1,0 +1,61 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+a                                                                                 0x01C4       4
+v                                                                                 0x01C8       4
+an                                                                                0x01CC       4
+i                                                                                 0x01D0       4
+d                                                                                 0x01D4       4
+b                                                                                 0x01D8       4
+ol                                                                                0x01DC       4
+oh                                                                                0x01E0       4
+z                                                                                 0x01E4       2
+x                                                                                 0x01E6       2
+y                                                                                 0x01E8       2
+p                                                                                 0x01EA       2
+w                                                                                 0x01EC       2
+j                                                                                 0x01EE       2
+e                                                                                 0x01F0       2
+m                                                                                 0x01F2      10
+r                                                                                 0x01FC      10
+_seed (stdlib.lib)                                                                0x0206       4
+_base_y (alcd.lib)                                                                0x020A       4
+_lcd_x                                                                            0x020E       1
+_lcd_y                                                                            0x020F       1
+_lcd_maxx                                                                         0x0210       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+st                                                                                R4,R5        2
+t                                                                                 R6,R7        2
+se                                                                                R8,R9        2
+mi                                                                                R10,R11      2
+o                                                                                 R12,R13      2
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+Angel                                                                             0x000EB     38
+Scan                                                                              0x00111    128
+ext_int0_isr                                                                      0x00191     41
+ext_int1_isr                                                                      0x001BA     41
+ext_int2_isr                                                                      0x001E3     41
+timer1_capt_isr                                                                   0x0020C     53
+main                                                                              0x00241    207
+itoa                                                                              0x00310     46
+ftoa                                                                              0x0033E    162
+_lcd_write_nibble_G101                                                            0x003E0     21
+_lcd_write_data                                                                   0x003F5     13
+lcd_gotoxy                                                                        0x00402     20
+lcd_clear                                                                         0x00416     12
+lcd_putchar                                                                       0x00422     31
+lcd_puts                                                                          0x00441     15
+lcd_init                                                                          0x00450     44
+ftrunc                                                                            0x0047C     48
+floor                                                                             0x004AC     16
+strcpyf                                                                           0x004BC     13

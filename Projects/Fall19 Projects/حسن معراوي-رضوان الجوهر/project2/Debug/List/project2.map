@@ -1,0 +1,44 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+c                                                                                 0x016C       2
+pre_error                                                                         0x016E       4
+kp                                                                                0x0172       4
+error                                                                             0x0176       4
+Pout                                                                              0x017A       4
+output                                                                            0x017E       4
+_seed (stdlib.lib)                                                                0x0182       4
+_base_y (alcd.lib)                                                                0x0186       4
+_lcd_y                                                                            0x018A       1
+_lcd_maxx                                                                         0x018B       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+a                                                                                 R5           1
+x                                                                                 R6,R7        2
+t                                                                                 R8,R9        2
+y                                                                                 R10,R11      2
+b                                                                                 R12,R13      2
+_lcd_x                                                                            R4           1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+PID                                                                               0x00086     60
+ext_int2_isr                                                                      0x000C2     12
+timer2_comp_isr                                                                   0x000CE     36
+adc_isr                                                                           0x000F2      2
+main                                                                              0x000F4    116
+itoa                                                                              0x00168     46
+_lcd_write_nibble_G101                                                            0x00196     21
+_lcd_write_data                                                                   0x001AB     13
+lcd_gotoxy                                                                        0x001B8     19
+lcd_clear                                                                         0x001CB     11
+lcd_putchar                                                                       0x001D6     24
+lcd_puts                                                                          0x001EE     15
+lcd_init                                                                          0x001FD     43

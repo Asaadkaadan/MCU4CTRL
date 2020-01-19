@@ -1,0 +1,40 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+th_k                                                                              0x0170       4
+th_k_1                                                                            0x0174       4
+speed                                                                             0x0178       4
+voltage                                                                           0x017C       4
+temp                                                                              0x0180       4
+_seed                                                                             0x0184       4
+_base_y                                                                           0x0188       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+sampling                                                                          R2.0      1bit
+str                                                                               R4,R5        2
+_lcd_x                                                                            R7           1
+_lcd_y                                                                            R6           1
+_lcd_maxx                                                                         R9           1
+
+FLASH Allocation [words]
+Function                                                          Address   Size
+--------------------------------------------------------------------------------
+ext_int0_isr                                                      0x00089     18
+ext_int1_isr                                                      0x0009B     16
+ext_int2_isr                                                      0x000AB     62
+timer2_comp_isr                                                   0x000E9      7
+main                                                              0x000F0    259
+itoa                                                              0x001F3     46
+_lcd_write_nibble_G101                                            0x00221     20
+_lcd_write_data                                                   0x00235     12
+lcd_gotoxy                                                        0x00241     13
+lcd_clear                                                         0x0024E     12
+lcd_putchar                                                       0x0025A     21
+lcd_puts                                                          0x0026F     17
+lcd_init                                                          0x00280     46

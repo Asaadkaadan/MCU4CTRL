@@ -1,0 +1,11 @@
+VERSION:3 SOURCE_TIMESTAMP:4F796E01
+NODE:I LEVEL:0 LINE:1 "C:\cvavreval\inc\mega16.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavreval\inc\delay.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavreval\inc\lcd.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavreval\inc\stdlib.h"
+NODE:V LEVEL:0 LINE:9 "i -> R4,R5"
+NODE:V LEVEL:0 LINE:10 "speed_ref -> RAM:????"
+NODE:V LEVEL:0 LINE:11 "f -> R2.0"
+NODE:V LEVEL:0 LINE:12 "*b -> R6,R7"
+NODE:F LEVEL:0 LINE:14 "int0(void)"
+NODE:F LEVEL:0 LINE:18 "main(void)"
